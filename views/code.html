@@ -1,0 +1,101 @@
+<h3>AngularJS Bootstrap Active Link Directive</h3>
+<p>This directive simply adds an active class to the parent of whatever link matches the current url.</p>
+
+<pre class="prettyprint lang-javascript">
+angular.module('appName')
+.directive('bsActiveLink', ['$location', function($location) {
+    //Example Markup:
+    //&lt;ul bs-active-link&gt;&lt;li&gt;&lt;a href="/#l1"&gt;Link1&lt;/a&gt;&lt;/li&gt;&lt;a href="/#l2"&gt;Link2&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+    return {
+        restrict: 'A', //use as attribute 
+        replace: false,
+        link: function(scope, elem) {
+            //after the route has changed
+            scope.$on("$routeChangeSuccess", function () {
+                var selectors = ['li > [href="#' + $location.path() + '"]',
+                                 'li > [href="/#' + $location.path() + '"]', //html5: false
+                                 'li > [href="' + $location.path() + '"]']; //html5: true
+                $(elem).find(selectors.join(',')) //find the matching link
+                .parent('li').addClass('active') //add active class to the matching element
+                .siblings('li').removeClass('active'); //remove it from the sibling elements
+            });    
+        }
+    }
+}]);
+</pre>
+<div class="alert alert-danger">
+    <strong>See it in action:</strong>
+    This directive is in use on this web page.
+</div>
+
+<h3>AngularJS Bootstrap Validation Directive</h3>
+<p>This directive makes validation errors not show up until they have blurred (entered and then left) the field.  This is a major improvement on the default behavior, where it would show up even as they are typing the first time.  It also adds a success or error icon to the field.</p>
+
+<pre class="prettyprint lang-javascript">
+angular.module('appName')
+.directive('bsValidate', [function () {
+    return {
+        restrict: 'A',
+        scope: {
+            model: '=ngModel',
+            message: '@validateMessage',
+        },
+        require: '?ngModel',
+        replace: false,
+        link: function (scope, elem, attrs, ngModel) {
+            var feedbackTmpl = {
+		        valid: elem.is('select') ? '' : '&lt;span class="glyphicon glyphicon-ok form-control-feedback"&gt;&lt;/span&gt;',
+		        invalid: elem.is('select') ? '' : '&lt;span class="glyphicon glyphicon-remove form-control-feedback"&gt;&lt;/span&gt;',
+		        error: '&lt;div class="bs-callout bs-callout-danger"&gt;' + scope.message + '&lt;/div&gt;'
+		    };
+            
+		    elem.one('blur change', function () {
+		        scope.$watch('model', function () {
+			        checkValidity();
+			    });
+		        checkValidity();
+		    });
+
+            var checkValidity = function () {
+	            elem.closest('.form-group')
+	            .toggleClass('has-error', ngModel.$invalid)
+	            .toggleClass('has-success', ngModel.$valid)
+	            .find('.form-control-feedback, .bs-callout').remove()
+	            .end().append(ngModel.$valid ? feedbackTmpl.valid : feedbackTmpl.invalid + feedbackTmpl.error);
+	        }
+        }
+    }
+}]);
+</pre>
+
+<div class="alert alert-danger">
+    <strong><a href="http://jsfiddle.net/gAz94/">See it in action</a></strong>
+</div>
+
+<h3>PHP Decode Array</h3>
+<p>For a legacy application I inherited, they had denormalized the database, and were storing many fields as JSON strings.  In order to quickly decode all elements of the array that could be decoded, I wrote the following</p>
+
+<pre class="prettyprint lang-php">
+public static function decodeArray($arr, $assoc=true) {
+/* Turns an array with embedded json components, like this:
+ * array("id" => 1, "preferences" => "{favorites: [\"google\",\"facebook\"]}")
+ * Into one with the json decoded, like this:
+ * array("id" => 1, "preferences" => array("favorites" => array("google","facebook")))
+ */
+    if (is_array($arr)) { //if they passed in a PHP array
+        array_walk($arr, function(&$value) {
+        	//if this item is a string, try to decode it
+            if (is_string($value)) {
+            	$decoded = json_decode($value, $assoc);
+            	//if we decoded without any errors, change the value to the decoded
+            	//value - it's valid json.
+                $value = (json_last_error() == JSON_ERROR_NONE) ? $decoded : $value;
+            }
+        });
+    }
+    else { //they passed in a JSON string, just decode it and return it.
+        $arr = json_decode($arr, $assoc);
+    }
+    return $arr;
+}
+</pre>

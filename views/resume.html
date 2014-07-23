@@ -1,0 +1,26 @@
+<div class="resume">
+  <h1>Employment</h1>
+    <div class="job" ng-repeat="job in jobs">
+    	<hr ng-if="$index">
+  		<h3>{{job.company}} <small>{{job.when}}</small></h3>
+  		<h4>{{job.title}}</h4>
+  		<p>{{job.description}}</p>
+  		<div class="tags clearfix">
+  			<span class="label label-primary" ng-repeat="tag in job.tags track by $index">{{tag}}</span>
+  		</div>
+    </div>
+
+	
+    <h1>Education</h1>
+    <div class="education">
+      <h3>Brigham Young University <small>2004-2005 / 2009-2011</small></h3>
+  		<p>Information Systems / Russian</p>
+    </div>
+
+    <h1>Volunteer Work</h1>
+    <div class="volunteer"> 
+      <h3>Eastern Europe <small>2007-2008</small></h3>
+  		<p>Volunteered in Eastern Europe for all of 2007 and 2008, where I did charity work and taught free English classes.  During this time I learned to speak Russian fluently.</p>
+    </div>
+  
+</div>

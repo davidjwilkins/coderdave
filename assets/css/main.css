@@ -1,0 +1,264 @@
+/* ==========================================================================
+   Browse Happy prompt
+   ========================================================================== */
+
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #DB1725;
+    color: white;
+}
+
+.navbar-inverse {
+    background: url('../img/red-diamond.gif');
+    border-bottom: solid 1px black;
+}
+
+.navbar-inverse .navbar-nav>li>a, .navbar-inverse .navbar-brand {
+    color: white;
+    font-size: 1.2em;
+}
+
+.navbar-toggle {
+    height: 100px;
+    width: 100px;
+    text-align: center;
+    line-height: 33px;
+    margin: 0;
+    border: 0;
+    background-color: rgba(0,0,0,.5);
+    border-radius: 0;
+
+}
+
+.job, .education, .volunteer {
+    background: rgba(0,0,0,.5);
+    border: dashed 1px #BBB;
+    padding: 10px;
+    color: #EEE;
+    margin-bottom: 10px;
+}
+.navbar-toggle .icon-bar {
+display: block;
+width: 82px;
+height: 6px;
+border-radius: 1px;
+margin-bottom: 12px;
+margin-top: 10px;
+}
+
+.navbar-collapse:not(.collapse) {
+    max-width: 100px;
+    right: 0;
+    position: absolute;
+}
+
+.navbar-collapse:not(.collapse) .navbar-nav {
+    margin: 0;
+    margin-left: -30px;
+    background: rgba(0,0,0,.75);
+}
+
+.navbar-inverse .navbar-nav>li>a:hover {
+    color: #DDD;
+}
+
+.navbar-inverse .navbar-brand {
+    font-size: 2em;
+}
+.navbar-brand,
+.navbar-nav > li a {
+    line-height: 100px;
+    height: 100px;
+    padding-top: 0;
+    min-width: 100px;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+}
+
+.contact {
+    position: absolute;
+    width: 100px;
+    background: rgba(0,0,0,.5);
+    padding: 0;
+}
+
+.contact > li {
+    border-bottom: 1px dotted #888;
+}
+
+.navbar-inverse:hover .navbar-nav>.active>a, .navbar-inverse:hover .navbar-nav>.active>a:hover, .navbar-inverse:hover .navbar-nav>.active>a:focus {
+    background: inherit;
+}
+
+.navbar-inverse:hover .navbar-nav li:hover, .navbar-inverse:hover .navbar-nav li:hover, .navbar-inverse:hover .navbar-nav li:focus, .navbar-inverse:hover .navbar-nav li:active {
+    background: black;
+    -webkit-transition: background 300ms ease-in 100ms; /* property duration timing-function delay */
+    -moz-transition: background 300ms ease-in 100ms;
+    -o-transition: background 300ms ease-in 100ms;
+    transition: background 300ms ease-in 100ms;
+}
+
+@-webkit-keyframes fadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
+}
+
+.contact {
+    display: none;
+}
+
+.navbar-inverse:hover .navbar-nav li:hover .contact {
+    display: block;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+.contact > li > a {
+    height: 100%;
+    width: 100%;
+    display: block;
+    color: white;
+    font-size: 2em;
+}
+.home, .resume {
+    color: white;
+}
+
+.home .intro {
+    font-weight: 800;
+    text-align: center;
+    margin-top: 10%;
+}
+
+.home .intro h1, .home .intro h2, .resume h1, .resume h2, .resume h3 {
+    font-weight: 800;
+    font-family: 'Raleway', serif;
+}
+.home .intro h1, .resume h1 {
+    font-size: 5em;
+}
+.home .intro h2 {
+    font-size: 4.5em;
+}
+
+h1.brand {
+    font-weight: 700;
+    font-size: 6em;
+    word-spacing: -.1em;
+    text-align: center;
+    font-family: 'Raleway', serif;
+}
+
+h1.brand .thin {
+    font-weight: 100;
+}
+
+
+
+.home {
+    font-size: 1.2em;
+    padding: 10px;
+}
+.background {
+    position: fixed;
+    opacity: .5;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    background: url('../img/background.png');
+    webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    z-index: -1;
+}
+.collapse .linked-in {
+    background-image: url('../img/linked_in.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    height:36px;
+    width:36px;
+    top: 8px;
+}
+
+.collapse .stack-overflow {
+    padding: 0px 0 0 3px;
+}
+
+.tags {
+    margin-bottom: 10px;
+}
+
+.tags span {
+    margin-right: .2em;
+    float: left;
+}
+
+/* desert scheme ported from vim to google prettify */
+pre.prettyprint { display: block; background-color: #333; font-family: 'Source Code Pro', 'Courier', serif}
+pre .nocode { background-color: none; color: #000 }
+pre .str { color: #ffa0a0 } /* string  - pink */
+pre .kwd { color: #f0e68c; font-weight: bold }
+pre .com { color: #87ceeb } /* comment - skyblue */
+pre .typ { color: #98fb98 } /* type    - lightgreen */
+pre .lit { color: #cd5c5c } /* literal - darkred */
+pre .pun { color: #fff }    /* punctuation */
+pre .pln { color: #fff }    /* plaintext */
+pre .tag { color: #f0e68c; font-weight: bold } /* html/xml tag    - lightyellow */
+pre .atn { color: #bdb76b; font-weight: bold } /* attribute name  - khaki */
+pre .atv { color: #ffa0a0 } /* attribute value - pink */
+pre .dec { color: #98fb98 } /* decimal         - lightgreen */
+
+/* Specify class=linenums on a pre to get line numbering */
+ol.linenums { margin-top: 0; margin-bottom: 0; color: #AEAEAE } /* IE indents via margin-left */
+li.L0,li.L1,li.L2,li.L3,li.L5,li.L6,li.L7,li.L8 { list-style-type: none }
+/* Alternate shading for lines */
+li.L1,li.L3,li.L5,li.L7,li.L9 { }
+
+@media print {
+  pre.prettyprint { background-color: none }
+  pre .str, code .str { color: #060 }
+  pre .kwd, code .kwd { color: #006; font-weight: bold }
+  pre .com, code .com { color: #600; font-style: italic }
+  pre .typ, code .typ { color: #404; font-weight: bold }
+  pre .lit, code .lit { color: #044 }
+  pre .pun, code .pun { color: #440 }
+  pre .pln, code .pln { color: #000 }
+  pre .tag, code .tag { color: #006; font-weight: bold }
+  pre .atn, code .atn { color: #404 }
+  pre .atv, code .atv { color: #060 }
+}
+
+.resume {
+    margin-top: 20px;
+}
+
+.resume h1.panel-title {
+    font-size: 26px;
+}
+
+html{
+  height: 100%;
+}
+body {
+  min-height: 100%;
+}

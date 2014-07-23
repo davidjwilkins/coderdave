@@ -1,0 +1,31 @@
+{{define "navbar"}}
+<nav class="navbar navbar-inverse" ng-controller="NavbarCtrl">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle"  ng-click="isCollapsed = !isCollapsed">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			
+			<a class="navbar-brand" href="#">David Wilkins</a>
+		</div>
+		<div ng-class="{collapse: isCollapsed}" ng-init="isCollapsed=true" class="navbar-collapse">
+			<ul class="nav navbar-nav navbar-right" bs-active-link>
+				<li class="active"><a href="/">Home</a></li>
+				<li><a href="/portfolio">Portfolio</a></li>
+				<li><a href="/resume">Resume</a></li>
+				<li><a href="/code">Code</a></li>
+				<li><a>Contact</a>
+				<ul class="contact">
+					<li><a href="mailto:davidjwilkins@live.com" target="_blank"><i class="fa fa-envelope-o"></i></a></li>
+					<li><a href="//stackoverflow.com/users/2082673/dave"><i class="fa fa-stack-overflow"></i></a></li>
+					<li><a href="//www.linkedin.com/pub/david-wilkins/15/172/b84"><i class="fa fa-linkedin"></i></a></li>
+				</ul>
+				</li>
+				
+			</ul>
+		</div>
+	</div>
+</nav>
+{{end}}
